@@ -33,7 +33,7 @@ namespace Task5_OS
                             Thread.Sleep(oneQuantMiliseconds);
                             if (nextProcess.RemainingTime > 0 && nextProcess.RemainingTime <= 10)
                             {
-                                Thread.Sleep((int)nextProcess.RemainingTime);
+                                Thread.Sleep((int) nextProcess.RemainingTime);
                                 continue;
                             }
                             if (nextProcess.ThreadState != ThreadState.Stopped)

@@ -10,29 +10,27 @@ namespace Task4_OS.Utils
 {
     public class Logger
     {
-        private Label label;
+        private ListBox log;
 
-        public Logger(Label label)
+        public Logger(ListBox log)
         {
-            this.label = label;
+            this.log = log;
         }
-        public void Log(string message, Color color)
+        public void Log(string message)
         {
-            if (label.InvokeRequired)
+            if (log.InvokeRequired)
             {
-                label.BeginInvoke(
+                log.BeginInvoke(
                     new Action(() =>
                         {
-                            label.Text = message;
-                            label.ForeColor = color;
+                            log.Items.Add(message);
                         }
                     )
                 );
             }
             else
             {
-                label.Text = message;
-                label.ForeColor = color;
+                log.Items.Add(message);
             }
 
         }
