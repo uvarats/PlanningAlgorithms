@@ -30,7 +30,7 @@ namespace Task5_OS
             pauseExecuting.Click += pauseExecuting_Click;
 
             queueGrid.DataSource = cyclicManager.Processes.ToList();
-            
+            priorityGrid.DataSource = priorityManager.Processes.ToList();
             Thread t = new Thread(() =>
             {
                 while (true)
@@ -38,6 +38,10 @@ namespace Task5_OS
                     queueGrid.BeginInvoke(new Action(() =>
                     {
                         queueGrid.DataSource = cyclicManager.Processes.ToList();
+                    }));
+                    priorityGrid.BeginInvoke(new Action(() =>
+                    {
+                        priorityGrid.DataSource = priorityManager.Processes.ToList();
                     }));
                     Thread.Sleep(500);
                 }
@@ -56,29 +60,51 @@ namespace Task5_OS
 
         private void pauseExecuting_Click(object sender, EventArgs e)
         {
-            if (cyclicManager.ExecutionState)
+            if (sender is Button b)
             {
-                cyclicManager.Pause();
-            } else
-            {
-                cyclicManager.Resume();
+                if (cyclicManager.ExecutionState)
+                {
+                    cyclicManager.Pause();
+                }
+                else
+                {
+                    cyclicManager.Resume();
+                }
+                b.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
             }
-            pauseExecuting.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
         }
 
         private void priorityStart_Click(object sender, EventArgs e)
         {
-
+            priorityManager.Start();
         }
 
         private void priorityPause_Click(object sender, EventArgs e)
         {
-
+            if (sender is Button b)
+            {
+                if (priorityManager.ExecutionState)
+                {
+                    priorityManager.Pause();
+                }
+                else
+                {
+                    priorityManager.Resume();
+                }
+                b.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
+            }
         }
 
         private void priorityAdd_Click(object sender, EventArgs e)
         {
-
+            priorityManager.AddProcess
+                (
+                    new Process
+                    (
+                        Convert.ToInt64(priorityTime.Value),
+                        Convert.ToInt32(processPriority.Value)
+                    )
+                );
         }
     }
 }
