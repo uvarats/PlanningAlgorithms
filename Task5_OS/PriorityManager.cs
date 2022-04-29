@@ -23,7 +23,7 @@ namespace Task5_OS
                     {
                         mre.WaitOne();
 
-                        Processes = new Queue<Process>(Processes.OrderBy(p => p.Priority));
+                        Processes = new Queue<Process>(Processes.OrderBy(p => p.Priority).Reverse());
 
                         Process nextProcess;
 
@@ -33,7 +33,7 @@ namespace Task5_OS
                             Thread.Sleep(oneQuantMiliseconds);
                             if (nextProcess.RemainingTime > 0 && nextProcess.RemainingTime <= 10)
                             {
-                                Thread.Sleep((int)nextProcess.RemainingTime);
+                                Thread.Sleep((int) nextProcess.RemainingTime);
                                 continue;
                             }
                             if (nextProcess.ThreadState != ThreadState.Stopped)
