@@ -70,7 +70,7 @@ namespace Task5_OS
                 {
                     cyclicManager.Resume();
                 }
-                b.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
+                b.Text = cyclicManager.ExecutionState ? Resources.Resource.Pause : Resources.Resource.Resume;
             }
         }
 
@@ -91,7 +91,7 @@ namespace Task5_OS
                 {
                     priorityManager.Resume();
                 }
-                b.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
+                b.Text = priorityManager.ExecutionState ? Resources.Resource.Pause : Resources.Resource.Resume;
             }
         }
 

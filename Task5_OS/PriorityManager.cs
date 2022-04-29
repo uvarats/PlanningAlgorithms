@@ -23,7 +23,7 @@ namespace Task5_OS
                     {
                         mre.WaitOne();
 
-                        Processes = new Queue<Process>(Processes.OrderBy(p => p.Priority));
+                        Processes = new Queue<Process>(Processes.OrderBy(p => p.Priority).Reverse());
 
                         Process nextProcess;
 
