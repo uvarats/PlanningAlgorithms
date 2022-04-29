@@ -63,14 +63,51 @@ namespace Task5_OS
 
         private void pauseExecuting_Click(object sender, EventArgs e)
         {
-            if (cyclicManager.ExecutionState)
+            if (sender is Button b)
             {
-                cyclicManager.Pause();
-            } else
-            {
-                cyclicManager.Resume();
+                if (cyclicManager.ExecutionState)
+                {
+                    cyclicManager.Pause();
+                }
+                else
+                {
+                    cyclicManager.Resume();
+                }
+                b.Text = cyclicManager.ExecutionState ? Resources.Resource.Pause : Resources.Resource.Resume;
             }
-            pauseExecuting.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
+        }
+
+        private void priorityStart_Click(object sender, EventArgs e)
+        {
+            priorityManager.Start();
+        }
+
+        private void priorityPause_Click(object sender, EventArgs e)
+        {
+            if (sender is Button b)
+            {
+                if (priorityManager.ExecutionState)
+                {
+                    priorityManager.Pause();
+                }
+                else
+                {
+                    priorityManager.Resume();
+                }
+                b.Text = priorityManager.ExecutionState ? Resources.Resource.Pause : Resources.Resource.Resume;
+            }
+        }
+
+        private void priorityAdd_Click(object sender, EventArgs e)
+        {
+            priorityManager.AddProcess
+                (
+                    new Process
+                    (
+                        Convert.ToInt64(priorityTime.Value),
+                        Convert.ToInt32(processPriority.Value)
+                    )
+                );
         }
     }
 }
