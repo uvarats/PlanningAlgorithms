@@ -14,8 +14,12 @@ namespace Task5_OS
     public partial class MainForm : Form
     {
         private CyclicManager cyclicManager;
+        private PriorityManager priorityManager;
         public MainForm()
         {
+            cyclicManager = new CyclicManager(500);
+            priorityManager = new PriorityManager(500);
+
             InitializeComponent();
         }
 
@@ -24,15 +28,9 @@ namespace Task5_OS
             addProcess.Click += addProcess_Click;
             startExecuting.Click += startExecuting_Click;
             pauseExecuting.Click += pauseExecuting_Click;
-            cyclicManager = new CyclicManager(500);
-            cyclicManager.AddProcess(new Process(750));
-            cyclicManager.AddProcess(new Process(1000));
-            cyclicManager.AddProcess(new Process(200));
-            cyclicManager.AddProcess(new Process(100));
-            cyclicManager.AddProcess(new Process(500));
-            cyclicManager.AddProcess(new Process(2000));
 
             queueGrid.DataSource = cyclicManager.Processes.ToList();
+            
             Thread t = new Thread(() =>
             {
                 while (true)
@@ -45,11 +43,6 @@ namespace Task5_OS
                 }
             });
             t.Start();
-
-            Thread.Sleep(3000);
-
-            cyclicManager.AddProcess(new Process(300));
-            cyclicManager.AddProcess(new Process(888));
         }
         private void addProcess_Click(object sender, EventArgs e)
         {
@@ -71,6 +64,21 @@ namespace Task5_OS
                 cyclicManager.Resume();
             }
             pauseExecuting.Text = cyclicManager.ExecutionState ? "Приостановить выполнение" : "Возобновить выполнение";
+        }
+
+        private void priorityStart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void priorityPause_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void priorityAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

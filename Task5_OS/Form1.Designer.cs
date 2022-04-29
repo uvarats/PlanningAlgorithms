@@ -39,10 +39,24 @@
             this.executionTime = new System.Windows.Forms.NumericUpDown();
             this.queueGrid = new System.Windows.Forms.DataGridView();
             this.priorityTab = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.priorityProcessId = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.priorityPause = new System.Windows.Forms.Button();
+            this.priorityStart = new System.Windows.Forms.Button();
+            this.priorityAdd = new System.Windows.Forms.Button();
+            this.priorityTime = new System.Windows.Forms.NumericUpDown();
+            this.priorityGrid = new System.Windows.Forms.DataGridView();
+            this.processPriority = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.tabControl.SuspendLayout();
             this.cyclicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.executionTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.queueGrid)).BeginInit();
+            this.priorityTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processPriority)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -161,6 +175,16 @@
             // 
             // priorityTab
             // 
+            this.priorityTab.Controls.Add(this.label4);
+            this.priorityTab.Controls.Add(this.processPriority);
+            this.priorityTab.Controls.Add(this.label3);
+            this.priorityTab.Controls.Add(this.priorityProcessId);
+            this.priorityTab.Controls.Add(this.label5);
+            this.priorityTab.Controls.Add(this.priorityPause);
+            this.priorityTab.Controls.Add(this.priorityStart);
+            this.priorityTab.Controls.Add(this.priorityAdd);
+            this.priorityTab.Controls.Add(this.priorityTime);
+            this.priorityTab.Controls.Add(this.priorityGrid);
             this.priorityTab.Location = new System.Drawing.Point(4, 29);
             this.priorityTab.Name = "priorityTab";
             this.priorityTab.Padding = new System.Windows.Forms.Padding(3);
@@ -168,6 +192,121 @@
             this.priorityTab.TabIndex = 1;
             this.priorityTab.Text = "Приоритетное планирование";
             this.priorityTab.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(452, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(146, 20);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Время выполнения";
+            // 
+            // priorityProcessId
+            // 
+            this.priorityProcessId.AutoSize = true;
+            this.priorityProcessId.Location = new System.Drawing.Point(781, 20);
+            this.priorityProcessId.Name = "priorityProcessId";
+            this.priorityProcessId.Size = new System.Drawing.Size(17, 20);
+            this.priorityProcessId.TabIndex = 22;
+            this.priorityProcessId.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(452, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(323, 20);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "В данный момент выполняется процесс (ID):";
+            // 
+            // priorityPause
+            // 
+            this.priorityPause.Location = new System.Drawing.Point(246, 437);
+            this.priorityPause.Name = "priorityPause";
+            this.priorityPause.Size = new System.Drawing.Size(238, 29);
+            this.priorityPause.TabIndex = 20;
+            this.priorityPause.Text = "Приостановить выполнение";
+            this.priorityPause.UseVisualStyleBackColor = true;
+            this.priorityPause.Click += new System.EventHandler(this.priorityPause_Click);
+            // 
+            // priorityStart
+            // 
+            this.priorityStart.Location = new System.Drawing.Point(11, 437);
+            this.priorityStart.Name = "priorityStart";
+            this.priorityStart.Size = new System.Drawing.Size(217, 29);
+            this.priorityStart.TabIndex = 19;
+            this.priorityStart.Text = "Запустить выполнение";
+            this.priorityStart.UseVisualStyleBackColor = true;
+            this.priorityStart.Click += new System.EventHandler(this.priorityStart_Click);
+            // 
+            // priorityAdd
+            // 
+            this.priorityAdd.Location = new System.Drawing.Point(604, 126);
+            this.priorityAdd.Name = "priorityAdd";
+            this.priorityAdd.Size = new System.Drawing.Size(203, 29);
+            this.priorityAdd.TabIndex = 18;
+            this.priorityAdd.Text = "Добавить процесс";
+            this.priorityAdd.UseVisualStyleBackColor = true;
+            this.priorityAdd.Click += new System.EventHandler(this.priorityAdd_Click);
+            // 
+            // priorityTime
+            // 
+            this.priorityTime.Location = new System.Drawing.Point(604, 62);
+            this.priorityTime.Maximum = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.priorityTime.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.priorityTime.Name = "priorityTime";
+            this.priorityTime.Size = new System.Drawing.Size(203, 27);
+            this.priorityTime.TabIndex = 17;
+            this.priorityTime.Value = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            // 
+            // priorityGrid
+            // 
+            this.priorityGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.priorityGrid.Location = new System.Drawing.Point(11, 6);
+            this.priorityGrid.Name = "priorityGrid";
+            this.priorityGrid.RowHeadersWidth = 51;
+            this.priorityGrid.RowTemplate.Height = 29;
+            this.priorityGrid.Size = new System.Drawing.Size(435, 415);
+            this.priorityGrid.TabIndex = 16;
+            // 
+            // processPriority
+            // 
+            this.processPriority.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.processPriority.Location = new System.Drawing.Point(604, 93);
+            this.processPriority.Name = "processPriority";
+            this.processPriority.Size = new System.Drawing.Size(203, 27);
+            this.processPriority.TabIndex = 24;
+            this.processPriority.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(452, 95);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 20);
+            this.label4.TabIndex = 25;
+            this.label4.Text = "Приоритет";
             // 
             // MainForm
             // 
@@ -183,6 +322,11 @@
             this.cyclicTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.executionTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.queueGrid)).EndInit();
+            this.priorityTab.ResumeLayout(false);
+            this.priorityTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.processPriority)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,5 +344,15 @@
         private System.Windows.Forms.NumericUpDown executionTime;
         private System.Windows.Forms.DataGridView queueGrid;
         private System.Windows.Forms.TabPage priorityTab;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown processPriority;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label priorityProcessId;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button priorityPause;
+        private System.Windows.Forms.Button priorityStart;
+        private System.Windows.Forms.Button priorityAdd;
+        private System.Windows.Forms.NumericUpDown priorityTime;
+        private System.Windows.Forms.DataGridView priorityGrid;
     }
 }
