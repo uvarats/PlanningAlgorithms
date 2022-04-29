@@ -30,7 +30,7 @@ namespace Task5_OS
                         if (Processes.TryDequeue(out nextProcess))
                         {
                             nextProcess.Execute();
-                            Thread.Sleep(oneQuantMiliseconds);
+                            Thread.Sleep(Quant);
                             if (nextProcess.RemainingTime > 0 && nextProcess.RemainingTime <= 10)
                             {
                                 Thread.Sleep((int) nextProcess.RemainingTime);

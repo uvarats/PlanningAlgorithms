@@ -106,5 +106,14 @@ namespace Task5_OS
                     )
                 );
         }
+        private void cyclicQuant_ValueChanged(object sender, EventArgs e)
+        {
+            cyclicManager.Quant = Convert.ToInt32(cyclicQuant.Value);
+        }
+
+        private void priorityQuant_ValueChanged(object sender, EventArgs e)
+        {
+            priorityManager.Quant = Convert.ToInt32(priorityQuant.Value);
+        }
     }
 }

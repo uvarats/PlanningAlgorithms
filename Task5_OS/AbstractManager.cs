@@ -9,7 +9,7 @@ namespace Task5_OS
 {
     public abstract class AbstractManager
     {
-        protected int oneQuantMiliseconds;
+        public int Quant { get; set; }
         public Queue<Process> Processes { get; protected set; }
         protected Thread innerThread;
         protected ManualResetEvent mre;
@@ -24,7 +24,7 @@ namespace Task5_OS
         public AbstractManager(int oneQuantMiliseconds)
         {
             Processes = new Queue<Process>();
-            this.oneQuantMiliseconds = oneQuantMiliseconds;
+            this.Quant = oneQuantMiliseconds;
             mre = new ManualResetEvent(true);
         }
         public abstract void Start();

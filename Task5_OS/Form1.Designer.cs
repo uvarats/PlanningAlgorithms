@@ -30,6 +30,7 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.cyclicTab = new System.Windows.Forms.TabPage();
+            this.cyclicLogger = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.executingLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +40,7 @@
             this.executionTime = new System.Windows.Forms.NumericUpDown();
             this.queueGrid = new System.Windows.Forms.DataGridView();
             this.priorityTab = new System.Windows.Forms.TabPage();
+            this.priorityLogger = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.processPriority = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,8 +51,10 @@
             this.priorityAdd = new System.Windows.Forms.Button();
             this.priorityTime = new System.Windows.Forms.NumericUpDown();
             this.priorityGrid = new System.Windows.Forms.DataGridView();
-            this.priorityLogger = new System.Windows.Forms.ListBox();
-            this.cyclicLogger = new System.Windows.Forms.ListBox();
+            this.priorityQuant = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cyclicQuant = new System.Windows.Forms.NumericUpDown();
             this.tabControl.SuspendLayout();
             this.cyclicTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.executionTime)).BeginInit();
@@ -59,6 +63,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.processPriority)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityQuant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclicQuant)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -73,6 +79,8 @@
             // 
             // cyclicTab
             // 
+            this.cyclicTab.Controls.Add(this.label7);
+            this.cyclicTab.Controls.Add(this.cyclicQuant);
             this.cyclicTab.Controls.Add(this.cyclicLogger);
             this.cyclicTab.Controls.Add(this.label2);
             this.cyclicTab.Controls.Add(this.executingLabel);
@@ -89,6 +97,15 @@
             this.cyclicTab.TabIndex = 0;
             this.cyclicTab.Text = "Циклическое планирование";
             this.cyclicTab.UseVisualStyleBackColor = true;
+            // 
+            // cyclicLogger
+            // 
+            this.cyclicLogger.FormattingEnabled = true;
+            this.cyclicLogger.ItemHeight = 20;
+            this.cyclicLogger.Location = new System.Drawing.Point(452, 147);
+            this.cyclicLogger.Name = "cyclicLogger";
+            this.cyclicLogger.Size = new System.Drawing.Size(543, 224);
+            this.cyclicLogger.TabIndex = 27;
             // 
             // label2
             // 
@@ -178,6 +195,8 @@
             // 
             // priorityTab
             // 
+            this.priorityTab.Controls.Add(this.label6);
+            this.priorityTab.Controls.Add(this.priorityQuant);
             this.priorityTab.Controls.Add(this.priorityLogger);
             this.priorityTab.Controls.Add(this.label4);
             this.priorityTab.Controls.Add(this.processPriority);
@@ -196,6 +215,15 @@
             this.priorityTab.TabIndex = 1;
             this.priorityTab.Text = "Приоритетное планирование";
             this.priorityTab.UseVisualStyleBackColor = true;
+            // 
+            // priorityLogger
+            // 
+            this.priorityLogger.FormattingEnabled = true;
+            this.priorityLogger.ItemHeight = 20;
+            this.priorityLogger.Location = new System.Drawing.Point(452, 161);
+            this.priorityLogger.Name = "priorityLogger";
+            this.priorityLogger.Size = new System.Drawing.Size(543, 224);
+            this.priorityLogger.TabIndex = 26;
             // 
             // label4
             // 
@@ -312,23 +340,79 @@
             this.priorityGrid.Size = new System.Drawing.Size(435, 415);
             this.priorityGrid.TabIndex = 16;
             // 
-            // priorityLogger
+            // priorityQuant
             // 
-            this.priorityLogger.FormattingEnabled = true;
-            this.priorityLogger.ItemHeight = 20;
-            this.priorityLogger.Location = new System.Drawing.Point(452, 192);
-            this.priorityLogger.Name = "priorityLogger";
-            this.priorityLogger.Size = new System.Drawing.Size(543, 224);
-            this.priorityLogger.TabIndex = 26;
+            this.priorityQuant.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.priorityQuant.Location = new System.Drawing.Point(813, 439);
+            this.priorityQuant.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.priorityQuant.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.priorityQuant.Name = "priorityQuant";
+            this.priorityQuant.Size = new System.Drawing.Size(182, 27);
+            this.priorityQuant.TabIndex = 27;
+            this.priorityQuant.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.priorityQuant.ValueChanged += new System.EventHandler(this.priorityQuant_ValueChanged);
             // 
-            // cyclicLogger
+            // label6
             // 
-            this.cyclicLogger.FormattingEnabled = true;
-            this.cyclicLogger.ItemHeight = 20;
-            this.cyclicLogger.Location = new System.Drawing.Point(452, 197);
-            this.cyclicLogger.Name = "cyclicLogger";
-            this.cyclicLogger.Size = new System.Drawing.Size(543, 224);
-            this.cyclicLogger.TabIndex = 27;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(643, 441);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(167, 20);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Размер одного кванта:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(656, 441);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(167, 20);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Размер одного кванта:";
+            // 
+            // cyclicQuant
+            // 
+            this.cyclicQuant.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.cyclicQuant.Location = new System.Drawing.Point(826, 439);
+            this.cyclicQuant.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.cyclicQuant.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.cyclicQuant.Name = "cyclicQuant";
+            this.cyclicQuant.Size = new System.Drawing.Size(182, 27);
+            this.cyclicQuant.TabIndex = 29;
+            this.cyclicQuant.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.cyclicQuant.ValueChanged += new System.EventHandler(this.cyclicQuant_ValueChanged);
             // 
             // MainForm
             // 
@@ -349,6 +433,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.processPriority)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityQuant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclicQuant)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -378,5 +464,9 @@
         private System.Windows.Forms.DataGridView priorityGrid;
         private System.Windows.Forms.ListBox priorityLogger;
         private System.Windows.Forms.ListBox cyclicLogger;
+        private System.Windows.Forms.NumericUpDown priorityQuant;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown cyclicQuant;
+        private System.Windows.Forms.Label label6;
     }
 }
