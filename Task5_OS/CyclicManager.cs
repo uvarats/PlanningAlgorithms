@@ -9,7 +9,7 @@ namespace Task5_OS
 {
     public class CyclicManager : AbstractManager
     {
-        public CyclicManager(int oneQuantMiliseconds) : base(oneQuantMiliseconds)
+        public CyclicManager(int oneQuantMiliseconds) : base(oneQuantMiliseconds, Loggers.Instance.CyclicLogger)
         {
         }
 
@@ -38,7 +38,7 @@ namespace Task5_OS
                             {
                                 nextProcess.Pause();
                                 Processes.Enqueue(nextProcess);
-                                Console.WriteLine($"Процесс {nextProcess.Id} не успел завершить выполнение за 1 квант и был перемещен в конец очереди.");
+                                logger.Log($"Процесс {nextProcess.Id} не успел завершить выполнение за 1 квант и был перемещен в конец очереди.");
                             }
                         }
                     }

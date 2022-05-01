@@ -11,10 +11,7 @@ namespace Task4_OS.Utils
     public class Logger
     {
         private ListBox log;
-        private static Logger cyclicInstance;
-        private static Logger priorityInstance;
-
-        private Logger(ListBox log)
+        public Logger(ListBox log)
         {
             this.log = log;
         }

@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Task4_OS.Utils;
 
 namespace Task5_OS
 {
     public class PriorityManager : AbstractManager
     {
-        public PriorityManager(int oneQuantMiliseconds) : base(oneQuantMiliseconds)
+        public PriorityManager(int oneQuantMiliseconds) : base(oneQuantMiliseconds, Loggers.Instance.PriorityLogger)
         {
         }
 
@@ -41,7 +42,7 @@ namespace Task5_OS
                                 nextProcess.Pause();
                                 nextProcess.Priority -= 5;
                                 Processes.Enqueue(nextProcess);
-                                Console.WriteLine($"Процесс {nextProcess.Id} не успел завершить выполнение за 1 квант, его приоритет был понижен.");
+                                logger.Log($"Процесс {nextProcess.Id} не успел завершить выполнение за 1 квант, его приоритет был понижен.");
                             }
                         }
                     }

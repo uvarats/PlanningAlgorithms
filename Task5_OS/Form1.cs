@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Task4_OS.Utils;
 
 namespace Task5_OS
 {
@@ -17,10 +18,16 @@ namespace Task5_OS
         private PriorityManager priorityManager;
         public MainForm()
         {
+            InitializeComponent();
+
+            Loggers.Initialize
+                (
+                    new Logger(cyclicLogger),
+                    new Logger(priorityLogger)
+                );
+
             cyclicManager = new CyclicManager(500);
             priorityManager = new PriorityManager(500);
-
-            InitializeComponent();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -50,7 +57,7 @@ namespace Task5_OS
         }
         private void addProcess_Click(object sender, EventArgs e)
         {
-            cyclicManager.AddProcess(new Process(Convert.ToInt64(executionTime.Value)));
+            cyclicManager.AddProcess(new Process(Convert.ToInt64(executionTime.Value), Loggers.Instance.CyclicLogger));
         }
 
         private void startExecuting_Click(object sender, EventArgs e)
@@ -102,7 +109,8 @@ namespace Task5_OS
                     new Process
                     (
                         Convert.ToInt64(priorityTime.Value),
-                        Convert.ToInt32(processPriority.Value)
+                        Convert.ToInt32(processPriority.Value),
+                        Loggers.Instance.PriorityLogger
                     )
                 );
         }

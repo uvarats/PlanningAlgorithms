@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Task4_OS.Utils;
 
 namespace Task5_OS
 {
@@ -13,6 +14,7 @@ namespace Task5_OS
         public Queue<Process> Processes { get; protected set; }
         protected Thread innerThread;
         protected ManualResetEvent mre;
+        protected Logger logger;
 
         public bool ExecutionState
         {
@@ -21,11 +23,12 @@ namespace Task5_OS
                 return mre.WaitOne(0);
             }
         }
-        public AbstractManager(int oneQuantMiliseconds)
+        public AbstractManager(int oneQuantMiliseconds, Logger logger)
         {
             Processes = new Queue<Process>();
-            this.Quant = oneQuantMiliseconds;
+            Quant = oneQuantMiliseconds;
             mre = new ManualResetEvent(true);
+            this.logger = logger;
         }
         public abstract void Start();
         public void AddProcess(Process p)

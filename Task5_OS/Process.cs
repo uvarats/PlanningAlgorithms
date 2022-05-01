@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Task4_OS.Utils;
 
 namespace Task5_OS
 {
@@ -16,6 +17,7 @@ namespace Task5_OS
         private Stopwatch sw;
         private ManualResetEvent mre;
         private int priority;
+        private Logger logger;
 
         public int Id { get; set; }
         public int Priority 
@@ -51,15 +53,16 @@ namespace Task5_OS
                     System.Threading.ThreadState.Unstarted;
             }
         }
-        public Process(long executionTime, int priority)
+        public Process(long executionTime, int priority, Logger logger)
         {
             Id = id++;
             this.executionTime = executionTime;
             Priority = priority;
+            this.logger = logger;
             mre = new ManualResetEvent(true);
             sw = new Stopwatch();
         }
-        public Process(long executionTime) : this(executionTime, 50) { }
+        public Process(long executionTime, Logger logger) : this(executionTime, 50, logger) { }
         public void Execute()
         {
             if (executionThread == null)
@@ -72,7 +75,7 @@ namespace Task5_OS
             {
                 mre.Set();
                 sw.Start();
-                Console.WriteLine($"Процесс {Id} возобновил свою работу. Оставшееся время выполнения {RemainingTime} мс.");
+                logger.Log($"Процесс {Id} возобновил свою работу. Оставшееся время выполнения {RemainingTime} мс.");
             }
         }
 
@@ -80,20 +83,20 @@ namespace Task5_OS
         {
             sw.Stop();
             mre.Reset();
-            Console.WriteLine($"Процесс {Id} приостановлен. Время выполнения {sw.ElapsedMilliseconds} мс.");
+            logger.Log($"Процесс {Id} приостановлен. Время выполнения {sw.ElapsedMilliseconds} мс.");
         }
         private void InitializeThread()
         {
             executionThread = new Thread(() =>
             {
                 sw.Start();
-                Console.WriteLine($"Процесс {Id} начал свою работу. Ожидаемое время выполнения: {executionTime}.");
+                logger.Log($"Процесс {Id} начал свою работу. Ожидаемое время выполнения: {executionTime}.");
                 while (true)
                 {
                     Thread.Sleep(10);
                     if (sw.ElapsedMilliseconds >= executionTime)
                     {
-                        Console.WriteLine($"Процесс {Id} завершил свое выполнение. Время выполнения: {sw.ElapsedMilliseconds} мс.");
+                        logger.Log($"Процесс {Id} завершил свое выполнение. Время выполнения: {sw.ElapsedMilliseconds} мс.");
                         sw.Stop();
                         return;
                     }
