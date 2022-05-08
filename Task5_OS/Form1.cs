@@ -19,7 +19,7 @@ namespace Task5_OS
         public MainForm()
         {
             InitializeComponent();
-
+            priorityStart.Enabled = false;
             Loggers.Initialize
                 (
                     new Logger(cyclicLogger),
@@ -113,6 +113,11 @@ namespace Task5_OS
                         Loggers.Instance.PriorityLogger
                     )
                 );
+            if (priorityManager.Processes.Count == PriorityInfo.Instance.ProcessCount)
+            {
+                priorityAdd.Enabled = false;
+                priorityStart.Enabled = true;
+            }
         }
         private void cyclicQuant_ValueChanged(object sender, EventArgs e)
         {
@@ -122,6 +127,16 @@ namespace Task5_OS
         private void priorityQuant_ValueChanged(object sender, EventArgs e)
         {
             priorityManager.Quant = Convert.ToInt32(priorityQuant.Value);
+        }
+
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PriorityInfoForm form = new PriorityInfoForm();
+            form.StartPosition = FormStartPosition.CenterParent;
+            var dialogResult = form.ShowDialog();
+            MessageBox.Show("Test");
+            PriorityInfo info = PriorityInfo.Instance;
+            processPriority.Maximum = info.PrioritiesCount;
         }
     }
 }

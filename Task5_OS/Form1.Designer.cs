@@ -30,41 +30,37 @@
         {
             this.tabControl = new System.Windows.Forms.TabControl();
             this.cyclicTab = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cyclicQuant = new System.Windows.Forms.NumericUpDown();
             this.cyclicLogger = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.executingLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.pauseExecuting = new System.Windows.Forms.Button();
             this.startExecuting = new System.Windows.Forms.Button();
             this.addProcess = new System.Windows.Forms.Button();
             this.executionTime = new System.Windows.Forms.NumericUpDown();
             this.queueGrid = new System.Windows.Forms.DataGridView();
             this.priorityTab = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.priorityQuant = new System.Windows.Forms.NumericUpDown();
             this.priorityLogger = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
             this.processPriority = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.priorityProcessId = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.priorityPause = new System.Windows.Forms.Button();
             this.priorityStart = new System.Windows.Forms.Button();
             this.priorityAdd = new System.Windows.Forms.Button();
             this.priorityTime = new System.Windows.Forms.NumericUpDown();
             this.priorityGrid = new System.Windows.Forms.DataGridView();
-            this.priorityQuant = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.cyclicQuant = new System.Windows.Forms.NumericUpDown();
             this.tabControl.SuspendLayout();
             this.cyclicTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclicQuant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.executionTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.queueGrid)).BeginInit();
             this.priorityTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityQuant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.processPriority)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityTime)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityGrid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priorityQuant)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclicQuant)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl
@@ -76,6 +72,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1026, 507);
             this.tabControl.TabIndex = 8;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // cyclicTab
             // 
@@ -83,8 +80,6 @@
             this.cyclicTab.Controls.Add(this.cyclicQuant);
             this.cyclicTab.Controls.Add(this.cyclicLogger);
             this.cyclicTab.Controls.Add(this.label2);
-            this.cyclicTab.Controls.Add(this.executingLabel);
-            this.cyclicTab.Controls.Add(this.label1);
             this.cyclicTab.Controls.Add(this.pauseExecuting);
             this.cyclicTab.Controls.Add(this.startExecuting);
             this.cyclicTab.Controls.Add(this.addProcess);
@@ -97,6 +92,43 @@
             this.cyclicTab.TabIndex = 0;
             this.cyclicTab.Text = "Циклическое планирование";
             this.cyclicTab.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(656, 441);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(167, 20);
+            this.label7.TabIndex = 30;
+            this.label7.Text = "Размер одного кванта:";
+            // 
+            // cyclicQuant
+            // 
+            this.cyclicQuant.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.cyclicQuant.Location = new System.Drawing.Point(826, 439);
+            this.cyclicQuant.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.cyclicQuant.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.cyclicQuant.Name = "cyclicQuant";
+            this.cyclicQuant.Size = new System.Drawing.Size(182, 27);
+            this.cyclicQuant.TabIndex = 29;
+            this.cyclicQuant.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.cyclicQuant.ValueChanged += new System.EventHandler(this.cyclicQuant_ValueChanged);
             // 
             // cyclicLogger
             // 
@@ -115,24 +147,6 @@
             this.label2.Size = new System.Drawing.Size(146, 20);
             this.label2.TabIndex = 15;
             this.label2.Text = "Время выполнения";
-            // 
-            // executingLabel
-            // 
-            this.executingLabel.AutoSize = true;
-            this.executingLabel.Location = new System.Drawing.Point(790, 20);
-            this.executingLabel.Name = "executingLabel";
-            this.executingLabel.Size = new System.Drawing.Size(17, 20);
-            this.executingLabel.TabIndex = 14;
-            this.executingLabel.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(452, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(323, 20);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "В данный момент выполняется процесс (ID):";
             // 
             // pauseExecuting
             // 
@@ -201,8 +215,6 @@
             this.priorityTab.Controls.Add(this.label4);
             this.priorityTab.Controls.Add(this.processPriority);
             this.priorityTab.Controls.Add(this.label3);
-            this.priorityTab.Controls.Add(this.priorityProcessId);
-            this.priorityTab.Controls.Add(this.label5);
             this.priorityTab.Controls.Add(this.priorityPause);
             this.priorityTab.Controls.Add(this.priorityStart);
             this.priorityTab.Controls.Add(this.priorityAdd);
@@ -215,6 +227,43 @@
             this.priorityTab.TabIndex = 1;
             this.priorityTab.Text = "Приоритетное планирование";
             this.priorityTab.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(643, 441);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(167, 20);
+            this.label6.TabIndex = 28;
+            this.label6.Text = "Размер одного кванта:";
+            // 
+            // priorityQuant
+            // 
+            this.priorityQuant.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.priorityQuant.Location = new System.Drawing.Point(813, 439);
+            this.priorityQuant.Maximum = new decimal(new int[] {
+            3000,
+            0,
+            0,
+            0});
+            this.priorityQuant.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.priorityQuant.Name = "priorityQuant";
+            this.priorityQuant.Size = new System.Drawing.Size(182, 27);
+            this.priorityQuant.TabIndex = 27;
+            this.priorityQuant.Value = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.priorityQuant.ValueChanged += new System.EventHandler(this.priorityQuant_ValueChanged);
             // 
             // priorityLogger
             // 
@@ -236,11 +285,6 @@
             // 
             // processPriority
             // 
-            this.processPriority.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
             this.processPriority.Location = new System.Drawing.Point(604, 93);
             this.processPriority.Name = "processPriority";
             this.processPriority.Size = new System.Drawing.Size(203, 27);
@@ -259,24 +303,6 @@
             this.label3.Size = new System.Drawing.Size(146, 20);
             this.label3.TabIndex = 23;
             this.label3.Text = "Время выполнения";
-            // 
-            // priorityProcessId
-            // 
-            this.priorityProcessId.AutoSize = true;
-            this.priorityProcessId.Location = new System.Drawing.Point(781, 20);
-            this.priorityProcessId.Name = "priorityProcessId";
-            this.priorityProcessId.Size = new System.Drawing.Size(17, 20);
-            this.priorityProcessId.TabIndex = 22;
-            this.priorityProcessId.Text = "0";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(452, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(323, 20);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "В данный момент выполняется процесс (ID):";
             // 
             // priorityPause
             // 
@@ -340,80 +366,6 @@
             this.priorityGrid.Size = new System.Drawing.Size(435, 415);
             this.priorityGrid.TabIndex = 16;
             // 
-            // priorityQuant
-            // 
-            this.priorityQuant.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.priorityQuant.Location = new System.Drawing.Point(813, 439);
-            this.priorityQuant.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.priorityQuant.Minimum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.priorityQuant.Name = "priorityQuant";
-            this.priorityQuant.Size = new System.Drawing.Size(182, 27);
-            this.priorityQuant.TabIndex = 27;
-            this.priorityQuant.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.priorityQuant.ValueChanged += new System.EventHandler(this.priorityQuant_ValueChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(643, 441);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(167, 20);
-            this.label6.TabIndex = 28;
-            this.label6.Text = "Размер одного кванта:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(656, 441);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(167, 20);
-            this.label7.TabIndex = 30;
-            this.label7.Text = "Размер одного кванта:";
-            // 
-            // cyclicQuant
-            // 
-            this.cyclicQuant.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.cyclicQuant.Location = new System.Drawing.Point(826, 439);
-            this.cyclicQuant.Maximum = new decimal(new int[] {
-            3000,
-            0,
-            0,
-            0});
-            this.cyclicQuant.Minimum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.cyclicQuant.Name = "cyclicQuant";
-            this.cyclicQuant.Size = new System.Drawing.Size(182, 27);
-            this.cyclicQuant.TabIndex = 29;
-            this.cyclicQuant.Value = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.cyclicQuant.ValueChanged += new System.EventHandler(this.cyclicQuant_ValueChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -426,15 +378,15 @@
             this.tabControl.ResumeLayout(false);
             this.cyclicTab.ResumeLayout(false);
             this.cyclicTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cyclicQuant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.executionTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.queueGrid)).EndInit();
             this.priorityTab.ResumeLayout(false);
             this.priorityTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priorityQuant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.processPriority)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityTime)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priorityGrid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priorityQuant)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cyclicQuant)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -444,8 +396,6 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage cyclicTab;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label executingLabel;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button pauseExecuting;
         private System.Windows.Forms.Button startExecuting;
         private System.Windows.Forms.Button addProcess;
@@ -455,8 +405,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown processPriority;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label priorityProcessId;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button priorityPause;
         private System.Windows.Forms.Button priorityStart;
         private System.Windows.Forms.Button priorityAdd;

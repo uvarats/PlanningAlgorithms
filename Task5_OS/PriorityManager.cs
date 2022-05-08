@@ -40,7 +40,7 @@ namespace Task5_OS
                             if (nextProcess.ThreadState != ThreadState.Stopped)
                             {
                                 nextProcess.Pause();
-                                nextProcess.Priority -= 5;
+                                nextProcess.Priority -= 1;
                                 Processes.Enqueue(nextProcess);
                                 logger.Log($"Процесс {nextProcess.Id} не успел завершить выполнение за 1 квант, его приоритет был понижен.");
                             }

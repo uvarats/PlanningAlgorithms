@@ -18,13 +18,14 @@ namespace Task5_OS
         private ManualResetEvent mre;
         private int priority;
         private Logger logger;
+        public static int upperPriority = 3;
 
         public int Id { get; set; }
         public int Priority 
         { 
             get => priority;
             set {
-                if (value >= 10 && value <= 100)
+                if (value >= 0 && value <= upperPriority)
                 {
                     priority = value;
                 }
